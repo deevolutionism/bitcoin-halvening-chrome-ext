@@ -1,0 +1,1 @@
+# Bitcoin Halvening Chrome Extension

@@ -48,10 +48,24 @@ class ProgressBar extends HTMLElement {
     }
     return progress
   }
+  
+  scaleNumber(value, fromMin, fromMax, toMin, toMax) {
+    // Find the range of the input value
+    const range = fromMax - fromMin;
+  
+    // Convert the input value to a 0-1 range (percentile)
+    const percentile = (value - fromMin) / range;
+  
+    // Scale the percentile to the output range
+    const scaledValue = (percentile * (toMax - toMin)) + toMin;
+  
+    // Return the scaled value
+    return scaledValue;
+  }
 
   rotateHue(percent) {
     // 1 -> 45
-    let deg = (Math.floor(percent*100) - 0) / (100 - 0) * (45 - 1) + 1
+    let deg = this.scaleNumber(percent, )
     this.content.style.filter = `${deg}deg`
   }
 
