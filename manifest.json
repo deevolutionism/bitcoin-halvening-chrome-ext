@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Bitcoin Halvening",
+  "description": "Keep up with progress toward the next bitcoin halvening!",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "bitcoin-progress-icon.png"
+  }
+}

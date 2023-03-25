@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <!-- <div class="foil"></div> -->
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="foil">
+    <header>
+      <div class="banner-container">
+        <img class="banner" src="bitcoin-halvening-banner.jpg" alt="bitcoin halvening banner"/>
+      </div>
+    </header>
+    <main>
+      <data-module id="blocks-until-next-halvening">
+        <p slot="description">blocks remaining until next halvening</p>
+      </data-module>
+      <data-module id="date-of-next-halvening">
+        <p slot="description">estimated date of next halvening</p>
+      </data-module>
+      <data-module id="number-of-halvenings">
+        <p slot="description">number of halvenings</p>
+      </data-module>
+      <data-module id="current-block-subsidy">
+        <p slot="description">current block subsidy</p>
+      </data-module>
+      <data-module id="next-halvening-subsidy">
+        <p slot="description">next halvening subsidy</p>
+      </data-module>
+      <data-module>
+        <progress-bar slot="data-value" percent="0.5" segments="10"></progress-bar>
+      </data-module>
+    </main>
+    <script defer src="popup.js"></script>
+    <script defer src="modules/ProgressBar.mjs"></script>
+    <script defer src="modules/DataModule.mjs"></script>
+  </body>
+</html>
