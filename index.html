@@ -28,11 +28,16 @@
         <p slot="description">next halvening subsidy</p>
       </data-module>
       <data-module>
-        <progress-bar slot="data-value" percent="0.5" segments="10"></progress-bar>
+        <p slot="description">Current progress toward next halvening</p>
+        <progress-bar slot="data-value"></progress-bar>
       </data-module>
     </main>
+    <footer>
+      <status-message status="problem with connection" type="error"></status-message>
+    </footer>
     <script defer src="popup.js"></script>
     <script defer src="modules/ProgressBar.mjs"></script>
     <script defer src="modules/DataModule.mjs"></script>
+    <script defer src="modules/StatusMessage.mjs"></script>
   </body>
 </html>

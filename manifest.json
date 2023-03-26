@@ -3,6 +3,9 @@
   "name": "Bitcoin Halvening",
   "description": "Keep up with progress toward the next bitcoin halvening!",
   "version": "1.0",
+  "icons": {
+    "128": "bitcoin-progress-icon.png"
+  }, 
   "action": {
     "default_popup": "index.html",
     "default_icon": "bitcoin-progress-icon.png"

@@ -2,7 +2,7 @@ const fetchBitcoinBlockCount = async () => {
   try {
     const res = await fetch("https://blockchain.info/q/getblockcount?cors=true")
     if(res.status !== 200) throw new Error(res.statusText)
-    console.log(data)
+    // console.log(data)
     const data = await res.text()
     return data
   } catch(e) {
@@ -44,35 +44,56 @@ const dateOfNextHalvening = (blockHeight) => {
 
 const currentSubsidy = (blockHeight) => {
   const halvings = nHalvings(blockHeight)
-  return 50000000 >> halvings
+  return 500000000 >> halvings
 }
 
+const nextSubsidy = (blockHeight) => {
+  const halvings = nHalvings(blockHeight) + 1
+  return 500000000 >> halvings
+}
 
+let state = {
+  blockHeight: null
+}
 
 const main = () => {
-  const blockHeight = 900000
-  const halvings = nHalvings(blockHeight)
+  const {blockHeight} = state
   
-  document
-    .querySelector("#number-of-halvenings")
-    .setAttribute('value', halvings)
-  
-  document
-    .querySelector('#blocks-until-next-halvening')
-    .setAttribute('value', `blocks: ${blocksUntilNextHalvening(blockHeight)}`)
-  
-  document
-    .querySelector('#date-of-next-halvening')
-    .setAttribute('value', `${dateOfNextHalvening(blockHeight)}`)
-  
-  document
-    .querySelector('#current-block-subsidy')
-    .setAttribute('value', `sats: ${currentSubsidy(blockHeight)}`)
+  if(blockHeight) {
+    const halvings = nHalvings(blockHeight)
+    const percent = progressTowardNextHalving(blockHeight)
+    document
+      .querySelector("#number-of-halvenings")
+      .setAttribute('value', halvings)
+    
+    document
+      .querySelector('#blocks-until-next-halvening')
+      .setAttribute('value', `${blocksUntilNextHalvening(blockHeight)}`)
+      
+    document
+      .querySelector('#date-of-next-halvening')
+      .setAttribute('value', `${dateOfNextHalvening(blockHeight)}`)
 
-  document
-    .querySelector("progress-bar")
-    .setAttribute('percent', `height: ${progressTowardNextHalving(blockHeight)}`)
+    document
+      .querySelector('#current-block-subsidy')
+      .setAttribute('value', `⚡ ${currentSubsidy(blockHeight)}`)
+
+    document
+      .querySelector("progress-bar")
+      .setAttribute('percent', progressTowardNextHalving(blockHeight))
+  
+    document
+      .querySelector("#next-halvening-subsidy")
+      .setAttribute('value', `⚡ ${nextSubsidy(blockHeight)}`)
+  }
+  
+  
+  
+
 
 }
 
 main()
+
+// let data = await fetchBitcoinBlockCount()
+// console.log('data', data)

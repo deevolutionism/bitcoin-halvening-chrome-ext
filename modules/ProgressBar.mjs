@@ -10,6 +10,11 @@ progressBarTemplate.innerHTML = `
       border: 1px solid red;
       display: block;
       transition: width 1s, filter 3s;
+      text-align: right;
+      padding-top: 2px;
+      padding-right: 4px;
+      box-sizing: border-box;
+      min-height: 20px;
     }
   </style>
   <span id="content">
@@ -20,7 +25,7 @@ progressBarTemplate.innerHTML = `
 class ProgressBar extends HTMLElement {
   constructor() {
     super()
-    this.shadow = this.attachShadow({ mode: 'open' })
+    this.shadow = this.attachShadow({ mode: 'closed' })
     this.shadow.append(progressBarTemplate.content.cloneNode(true))
     this.content = this.shadow.querySelector("#content")
   }
@@ -31,7 +36,7 @@ class ProgressBar extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     console.log(name, oldValue, newValue)
-    this.updateProgressbar(this)
+    this.updateProgressbar(newValue)
   }
 
   progressBar(element) {
@@ -49,7 +54,7 @@ class ProgressBar extends HTMLElement {
     return progress
   }
   
-  scaleNumber(value, fromMin, fromMax, toMin, toMax) {
+  scaleNumber({ value, fromMin, fromMax, toMin, toMax }) {
     // Find the range of the input value
     const range = fromMax - fromMin;
   
@@ -65,15 +70,17 @@ class ProgressBar extends HTMLElement {
 
   rotateHue(percent) {
     // 1 -> 45
-    let deg = this.scaleNumber(percent, )
-    this.content.style.filter = `${deg}deg`
+    let deg = this.scaleNumber({value: percent, fromMin: 0, fromMax: 1, toMin: 1, toMax: 90})
+    return `${Math.floor(deg)}deg`
   }
 
-  updateProgressbar(element) {
-    console.log(this.shadow.querySelector("#container"))
-    let text = this.progressBar(element)
-    console.log('progress bar ', text)
-    this.content.style.width = this.rotateHue(text)
+  updateProgressbar(value) {
+    console.log(this.content)
+    // let text = this.progressBar(value)
+    console.log('progress bar ', value * 100)
+    this.content.style.filter = `hue-rotate(${this.rotateHue(value)})`
+    this.content.style.width = `${this.scaleNumber({value, fromMin: 0, fromMax: 1, toMin: 0, toMax: 100})}%`
+    this.content.innerText = `${Math.floor(value * 100)}%`
   }
 
 }
