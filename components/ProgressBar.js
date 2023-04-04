@@ -18,11 +18,11 @@ progressBarTemplate.innerHTML = `
     }
   </style>
   <span id="content">
-    
+    0%
   </span>
 `
 
-class ProgressBar extends HTMLElement {
+export class ProgressBar extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: 'closed' })
@@ -84,5 +84,3 @@ class ProgressBar extends HTMLElement {
   }
 
 }
-
-customElements.define("progress-bar", ProgressBar)

@@ -22,10 +22,10 @@
         <p slot="description">number of halvenings</p>
       </data-module>
       <data-module id="current-block-subsidy">
-        <p slot="description">current block subsidy</p>
+        <p slot="description">current block subsidy<br>(in sats ⚡)</p>
       </data-module>
       <data-module id="next-halvening-subsidy">
-        <p slot="description">next halvening subsidy</p>
+        <p slot="description">next halvening subsidy<br>(in sats ⚡)</p>
       </data-module>
       <data-module>
         <p slot="description">Current progress toward next halvening</p>
@@ -33,11 +33,8 @@
       </data-module>
     </main>
     <footer>
-      <status-message status="problem with connection" type="error"></status-message>
+      <status-message></status-message>
     </footer>
-    <script defer src="popup.js"></script>
-    <script defer src="modules/ProgressBar.mjs"></script>
-    <script defer src="modules/DataModule.mjs"></script>
-    <script defer src="modules/StatusMessage.mjs"></script>
+    <script defer type="module" src="main.js"></script>
   </body>
 </html>

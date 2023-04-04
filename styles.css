@@ -1,13 +1,3 @@
-@font-face {
-  font-family: Roboto;
-  src: url(Roboto-Regular.ttf)
-}
-
-@font-face {
-  font-family: PressStart2p;
-  src: url(PressStart2p-Regular.ttf)
-}
-
 html {
 }
 
@@ -47,7 +37,6 @@ header .banner-container {
 }
 
 body {
-  font-family: Roboto;
   width: 400px;
   margin: 1px;
   background-color: black;
@@ -66,4 +55,16 @@ footer {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 2px groove #464646;
+}
+
+status-message[type='DONE'] {
+  color: green;
+}
+
+status-message[type='LOADING'] {
+  color: yellow;
+}
+
+status-message[type='ERROR'] {
+  color: red;
 }

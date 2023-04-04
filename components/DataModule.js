@@ -76,7 +76,7 @@ template.innerHTML = `
   </div>
 `
 
-class DataModule extends HTMLElement {
+export class DataModule extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
@@ -102,5 +102,3 @@ class DataModule extends HTMLElement {
   }
 
 }
-
-customElements.define("data-module", DataModule)

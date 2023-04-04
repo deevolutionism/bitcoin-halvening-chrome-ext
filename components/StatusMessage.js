@@ -1,3 +1,9 @@
+export const statusTypes = {
+  'ERROR': 'ERROR',
+  'LOADING': 'LOADING',
+  'DONE': 'DONE'
+}
+
 const statusMsgTemplate = document.createElement("statusMsgTemplate")
 statusMsgTemplate.innerHTML = `
   <style>
@@ -8,11 +14,6 @@ statusMsgTemplate.innerHTML = `
       background: #242424;
       border-bottom: 2px groove #af9551;
     }
-    .status-container {
-
-    }
-    #status-text {
-    }
   </style>
   <div id="content">
     <p id="status-text-container">
@@ -22,7 +23,7 @@ statusMsgTemplate.innerHTML = `
   </div>
 `
 
-class StatusMessage extends HTMLElement {
+export class StatusMessage extends HTMLElement {
   constructor() {
     super()
     this.shadow = this.attachShadow({ mode: 'open' })
@@ -55,13 +56,13 @@ class StatusMessage extends HTMLElement {
 
   updateType(value) {
     switch (value) {
-      case 'loading':
+      case statusTypes.LOADING:
         this.statusType.innerText = '🟡'
         break;
-      case 'error':
+      case statusTypes.ERROR:
         this.statusType.innerText = '🔴'
         break;
-      case 'done':
+      case statusTypes.DONE:
         this.statusType.innerText = '🟢'
         break;
       default:
@@ -70,5 +71,3 @@ class StatusMessage extends HTMLElement {
   }
 
 }
-
-customElements.define("status-message", StatusMessage)
