@@ -1,5 +1,5 @@
 import { assert, it } from 'vitest'
-import { nHalvings, blocksUntilNextHalvening, dateOfNextHalvening, currentSubsidy } from '../utils'
+import { nHalvings, blocksUntilNextHalvening, dateOfNextHalvening, currentSubsidy, nextSubsidy } from '../src/utils'
 import { HALVING_INTERVAL, COIN } from '../constants'
 
 describe('nHalvings', () => {
@@ -26,6 +26,15 @@ describe('currentSubsidy', () => {
   })
   it('should return 0 for blockHeight 210000', () => {
     assert.equal(currentSubsidy(HALVING_INTERVAL+1, HALVING_INTERVAL, COIN), COIN >> 1)
+  })
+})
+
+describe('nextSubsidy', () => {
+  it('should return 250000000 for blockHeight 210000', () => {
+    assert.equal(nextSubsidy(210000, HALVING_INTERVAL, COIN), COIN >> 1)
+  })
+  it('should return 0 for blockHeight 6720000', () => {
+    assert.equal(nextSubsidy(HALVING_INTERVAL * 32, HALVING_INTERVAL, COIN), 0)
   })
 })
 

@@ -3,7 +3,11 @@
   <!-- <div class="foil"></div> -->
   <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
     <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://kit.fontawesome.com/090ca49637.js" crossorigin="anonymous"></script>
+    %sveltekit.head%
   </head>
   <body class="foil">
     <header>
@@ -12,7 +16,7 @@
       </div>
     </header>
     <main>
-      <data-module id="blocks-until-next-halvening">
+      <!-- <data-module id="blocks-until-next-halvening">
         <p slot="description">blocks remaining until next halvening</p>
       </data-module>
       <data-module id="date-of-next-halvening">
@@ -30,7 +34,7 @@
       <data-module>
         <p slot="description">Current progress toward next halvening</p>
         <progress-bar slot="data-value"></progress-bar>
-      </data-module>
+      </data-module> -->
     </main>
     <footer>
       <status-message></status-message>

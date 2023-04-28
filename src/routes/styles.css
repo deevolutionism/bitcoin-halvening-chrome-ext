@@ -21,29 +21,14 @@ html {
 	}
 }
 
-header {
-  margin-bottom: 8px;
-}
-
-header .banner {
-  width: 100%;
-  margin-top: -60px;
-}
-
-header .banner-container {
-  max-height: 60px;
-  overflow: hidden;
-  border: 1px solid #363636;
-}
-
 body {
   width: 400px;
-  margin: 1px;
+  margin: 0 auto;
   background-color: black;
   padding: 1em;
 }
 
-main {
+section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
