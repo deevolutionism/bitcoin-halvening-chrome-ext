@@ -1,3 +1,4 @@
+import BN from 'bn.js';
 /**
  * Calculates the number of blocks remaining until the next halving event for a given block height and halving interval.
  *
@@ -66,27 +67,12 @@ export const timeOfNextHalvening = (blockHeight, halvingInterval) => {
 }
 
 /**
- * Calculates the current subsidy for a given block height, halving interval, and initial subsidy.
+ * Calculates the expected subsidy for a given halving.
  *
- * @param {number} blockHeight - The height of the block for which to calculate the current subsidy.
- * @param {number} halvingInterval - The number of blocks between halvings.
- * @param {number} initSubsidy - The initial subsidy per block.
- * @returns {number} The current subsidy per block.
+ * @param {number} nHalvings - number of halvings that have occurred.
+ * @param {BN} initSubsidy - The initial subsidy per block.
+ * @returns {string} The current subsidy per block.
  */
-export const currentSubsidy = (blockHeight, halvingInterval, initSubsidy) => {
-  const halvings = nHalvings(blockHeight, halvingInterval)
-  return initSubsidy >> halvings
-}
-
-/**
- * Calculates the subsidy for the next halving event for a given block height, halving interval, and initial subsidy.
- *
- * @param {number} blockHeight - The height of the current block.
- * @param {number} halvingInterval - The number of blocks between halvings.
- * @param {number} initSubsidy - The initial subsidy per block.
- * @returns {number} The subsidy per block for the next halving event.
- */
-export const nextSubsidy = (blockHeight, halvingInterval, initSubsidy) => {
-  const halvings = nHalvings(blockHeight, halvingInterval) + 1
-  return halvings >= 31 ? 0 : initSubsidy >> halvings
+export const subsidy = (nHalvings, initSubsidy) => {
+  return initSubsidy.shrn(nHalvings).toString(); // shift right by 1 bit
 }

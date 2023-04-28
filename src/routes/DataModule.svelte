@@ -1,4 +1,12 @@
 <script>
+  /**
+   * @typedef {Object} ValueProps
+   * @property {string} [value='----'] - The value to display.
+   * @property {string} [description='----'] - The description to display.
+   * @property {boolean} [sats=false] - Whether the value is in satoshis (true) or bitcoin (false).
+   * 
+   * @param {ValueProps} props - The props object.
+   */
   export let value = '----';
   export let description = '----';
   export let sats = false;
