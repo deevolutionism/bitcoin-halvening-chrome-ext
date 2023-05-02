@@ -13,6 +13,19 @@ export const blocksRemaining = (blockHeight, halvingInterval) => {
 }
 
 /**
+ * Calculates the number of blocks until the next halving occurs for a given block height and halving interval.
+ *
+ * @param {number} blockHeight - The height of the block for which to calculate the next halving.
+ * @param {number} halvingInterval - The number of blocks between halvings.
+ * @returns {number} The number of blocks until the next halving occurs.
+ */
+export const blocksUntilNextHalvening = (nHalvings, halvingInterval) => {
+  // (210,000 * (halvings + 1)) - blockHeight
+  return (halvingInterval * (nHalvings + 1) - blockHeight)
+}
+
+
+/**
  * Calculates the progress towards the next halving event for a given block height and halving interval.
  *
  * @param {number} currentBlockHeight - The height of the current block.
@@ -35,19 +48,6 @@ export const nHalvings = (blockHeight, halvingInterval) => {
   // halving occurs ~after~ 210,000 blocks, so subtract 1 from blockHeight
   // otherwise we'd get a halving at block 210,000, which is incorrect
   return Math.floor( (blockHeight-1) / halvingInterval )
-}
-
-/**
- * Calculates the number of blocks until the next halving occurs for a given block height and halving interval.
- *
- * @param {number} blockHeight - The height of the block for which to calculate the next halving.
- * @param {number} halvingInterval - The number of blocks between halvings.
- * @returns {number} The number of blocks until the next halving occurs.
- */
-export const blocksUntilNextHalvening = (blockHeight, halvingInterval) => {
-  const halvings = nHalvings(blockHeight, halvingInterval)
-  // (210,000 * (halvings + 1)) - blockHeight
-  return (halvingInterval * (halvings + 1) - blockHeight)
 }
 
 /**
